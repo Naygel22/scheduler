@@ -1,6 +1,7 @@
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
 import { SchedulerComponent } from './components/SchedulerComponent'
+import { ToastContainer } from 'react-toastify'
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache(),
@@ -17,6 +18,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <SchedulerComponent />
+      <ToastContainer />
     </QueryClientProvider>
   )
 }

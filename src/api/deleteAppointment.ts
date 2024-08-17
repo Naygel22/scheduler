@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { QUERY_KEYS } from "./constants"
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import { showNotification } from "../components/showNotification";
 
 const deleteAppointment = async (id: AppointmentModel["id"]) => {
   if (typeof id !== 'string') {
@@ -29,9 +30,11 @@ export const useDeleteAppointmentMutation = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.appointments] })
+      showNotification({ message: 'Wydarzenie zostało usunięte', type: 'success' });
     },
     onError: (error) => {
       console.error("Coś poszło nie tak", error)
+      showNotification({ message: 'Wystąpił błąd podczas usuwania wydarzenia', type: 'error' });
     }
   })
 }

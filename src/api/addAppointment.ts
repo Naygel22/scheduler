@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { QUERY_KEYS } from "./constants";
+import { showNotification } from "../components/showNotification";
 
 const addAppointment = async (data: AppointmentModel) => {
   try {
@@ -13,9 +14,7 @@ const addAppointment = async (data: AppointmentModel) => {
       endDate: data.endDate ? new Date(data.endDate).toISOString() : undefined,
     };
     await addDoc(collection(db, "appointments"), newEvent);
-    console.log(`Wydarzenie zostało pomyślnie dodane`);
   } catch (error) {
-    console.error('Błąd podczas dodawania wydarzenia:', error);
     throw error;
   }
 };
@@ -29,9 +28,11 @@ export const useAddAppointmentMutation = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.appointments] });
+      showNotification({ message: 'Wydarzenie zostało pomyślnie dodane!', type: 'success' });
     },
     onError: (error) => {
       console.error("Coś poszło nie tak", error);
+      showNotification({ message: 'Wystąpił błąd podczas dodawania wydarzenia', type: 'error' });
     }
   });
 };

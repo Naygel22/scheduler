@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Scheduler App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Scheduler App is a modern calendar management application utilizing the React Scheduler library. It allows users to schedule, edit, and delete appointments in various views, including daily, weekly, and monthly. The app is integrated with Firebase for data storage and provides full localization support for Polish.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Features](#features)
+- [Usage](#usage)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies
 
-- Configure the top-level `parserOptions` property like this:
+- Vite
+- React
+- TypeScript
+- React Scheduler
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+**Run the app locally:**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    npm run dev
+
+
+## Features
+
+- **Appointment Management**: Add, edit, and delete appointments.
+- **Calendar Views**: Daily, weekly, and monthly.
+- **Localization**: Full Polish language support throughout the interface.
+- **Recurring Appointments**: Set up recurring appointments with various intervals.
+
+
+## Usage
+
+Once the application is running, you can manage your appointments within the calendar. Here’s how to use the core features:
+
+- **Add Appointments**: Click on the desired date and time to add a new appointment.
+- **Edit Appointments**: Click on an existing appointment to open the editing form.
+- **Delete Appointments**: Click on an appointment to delete it.
+- **Views**: Switch between daily, weekly, and monthly views using the buttons on the toolbar.

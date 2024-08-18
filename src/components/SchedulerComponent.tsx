@@ -21,7 +21,6 @@ import { useEditAppointmentMutation } from '../api/editAppointment';
 
 export const SchedulerComponent = () => {
   const { data: appointmentsData, isLoading, error } = useGetAllAppointmentsQuery();
-  console.log('appointmentsData', appointmentsData)
 
   const [currentDate, setCurrentDate] = useState<Date | string>(new Date());
 
@@ -31,6 +30,40 @@ export const SchedulerComponent = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading data</div>;
+
+  const appointmentFormMessages = {
+    detailsLabel: 'Szczegóły',
+    allDayLabel: 'Cały dzień',
+    titleLabel: 'Tytuł',
+    commitCommand: 'Zapisz',
+    moreInformationLabel: 'Więcej informacji',
+    repeatLabel: 'Powtarzaj',
+    notesLabel: 'Notatki',
+    never: 'Nigdy',
+    daily: 'Codziennie',
+    weekly: 'Co tydzień',
+    monthly: 'Co miesiąc',
+    yearly: 'Co rok',
+    repeatEveryLabel: 'Powtarzaj co',
+    daysLabel: 'dzień/dni',
+    endRepeatLabel: 'Koniec powtarzania',
+    onLabel: 'W',
+    afterLabel: 'Po',
+    occurrencesLabel: 'wystąpienie/wystąpienia',
+    weeksOnLabel: 'tydzień/tygodnie w:',
+    monthsLabel: 'miesiąc/miesiące',
+    ofEveryMonthLabel: 'w każdym miesiącu',
+    theLabel: 'W',
+    firstLabel: 'Pierwszy',
+    secondLabel: 'Drugi',
+    thirdLabel: 'Trzeci',
+    fourthLabel: 'Czwarty',
+    lastLabel: 'Ostatni',
+    yearsLabel: 'rok/lat',
+    ofLabel: 'z',
+    everyLabel: 'Każdy',
+  };
+
 
   // Funkcja obsługująca zmiany w danych spotkań (dodawanie, edytowanie, usuwanie)
   const commitChanges = ({ added, changed, deleted }: any) => {
@@ -51,16 +84,18 @@ export const SchedulerComponent = () => {
 
   return (
     <Paper>
-      <Scheduler data={appointmentsData} locale="pl-PL">
+      <Scheduler data={appointmentsData} locale="pl-PL" height={700}>
         <ViewState
           currentDate={currentDate}
           onCurrentDateChange={setCurrentDate}
+
         />
         <EditingState onCommitChanges={commitChanges} />
 
         <Toolbar />
         <DateNavigator />
-        <TodayButton messages={{ today: "Dzisiaj" }} />
+        <TodayButton
+          messages={{ today: "Dzisiaj" }} />
         <ViewSwitcher />
 
         {/* Wyświetlanie widoków */}
@@ -73,8 +108,9 @@ export const SchedulerComponent = () => {
         <AppointmentTooltip
           showCloseButton
           showOpenButton
+
         />
-        <AppointmentForm />
+        <AppointmentForm messages={appointmentFormMessages} />
       </Scheduler>
     </Paper>
   );

@@ -14,6 +14,8 @@
     "@devexpress/dx-react-scheduler": "^4.0.8",
     "@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
     "@tanstack/react-query": "^5.51.23",
+    "devextreme": "^24.1.5",
+    "devextreme-react": "^24.1.5",
     "firebase": "^10.12.5",
     "json-server": "^1.0.0-beta.1",
     "react": "^18.3.1",

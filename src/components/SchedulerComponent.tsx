@@ -64,8 +64,6 @@ export const SchedulerComponent = () => {
     everyLabel: 'Każdy',
   };
 
-
-  // Funkcja obsługująca zmiany w danych spotkań (dodawanie, edytowanie, usuwanie)
   const commitChanges = ({ added, changed, deleted }: any) => {
     if (!appointmentsData) {
       return;
@@ -83,12 +81,11 @@ export const SchedulerComponent = () => {
   };
 
   return (
-    <Paper>
+    <Paper sx={{ border: '1px solid #e0e0e0' }}>
       <Scheduler data={appointmentsData} locale="pl-PL" height={700}>
         <ViewState
           currentDate={currentDate}
           onCurrentDateChange={setCurrentDate}
-
         />
         <EditingState onCommitChanges={commitChanges} />
 
@@ -98,7 +95,6 @@ export const SchedulerComponent = () => {
           messages={{ today: "Dzisiaj" }} />
         <ViewSwitcher />
 
-        {/* Wyświetlanie widoków */}
         <DayView startDayHour={9} endDayHour={19} name='Dzień' />
         <WeekView startDayHour={9} endDayHour={19} name='Tydzień' />
         <MonthView name='Miesiąc' />
@@ -108,7 +104,6 @@ export const SchedulerComponent = () => {
         <AppointmentTooltip
           showCloseButton
           showOpenButton
-
         />
         <AppointmentForm messages={appointmentFormMessages} />
       </Scheduler>

@@ -18,6 +18,7 @@ import { useGetAllAppointmentsQuery } from '../api/getAllAppointments';
 import { useAddAppointmentMutation } from '../api/addAppointment';
 import { useDeleteAppointmentMutation } from '../api/deleteAppointment';
 import { useEditAppointmentMutation } from '../api/editAppointment';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const SchedulerComponent = () => {
   const { data: appointmentsData, isLoading, error } = useGetAllAppointmentsQuery();
@@ -28,7 +29,7 @@ export const SchedulerComponent = () => {
   const { mutate: deleteAppointment } = useDeleteAppointmentMutation();
   const { mutate: changeAppointment } = useEditAppointmentMutation();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <CircularProgress />;
   if (error) return <div>Error loading data</div>;
 
   const appointmentFormMessages = {
